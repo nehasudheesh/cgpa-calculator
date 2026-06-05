@@ -62,3 +62,12 @@ button:hover {
     color: green;
     font-weight: bold;
 }
+#subjectList {
+    margin-top: 20px;
+}
+
+#subjectList p {
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
