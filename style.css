@@ -71,3 +71,49 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
+.subject-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #f0f0f0;
+
+    padding: 10px;
+
+    margin-top: 10px;
+
+    border-radius: 5px;
+}
+.delete-btn {
+
+    background: red;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+}.delete-btn:hover {
+
+    background: darkred;
+}
+
+#result {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: green;
+}

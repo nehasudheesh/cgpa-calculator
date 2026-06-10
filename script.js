@@ -39,6 +39,21 @@ function addSubject() {
     // Clear inputs
     document.getElementById("subject").value = "";
     document.getElementById("credit").value = "";
+
+    let exists =
+subjects.some(
+    item =>
+    item.subject.toLowerCase()
+    ===
+    subject.toLowerCase()
+);
+
+if(exists){
+
+    alert("Subject already added");
+
+    return;
+}
 }
 
 // Display all subjects
@@ -49,21 +64,44 @@ function displaySubjects() {
 
     list.innerHTML = "";
 
+    if (subjects.length === 0) {
+
+        list.innerHTML =
+            "<p>No subjects added yet.</p>";
+
+        return;
+    }
+
     subjects.forEach((item, index) => {
 
         list.innerHTML += `
-            <p>
-                ${index + 1}. 
+        <div class="subject-card">
+
+            <span>
                 ${item.subject}
                 |
                 Grade: ${item.grade}
                 |
                 Credits: ${item.credit}
-            </p>
+            </span>
+
+            <button
+                onclick="deleteSubject(${index})"
+                class="delete-btn">
+                Delete
+            </button>
+
+        </div>
         `;
     });
 }
 
+function deleteSubject(index) {
+
+    subjects.splice(index, 1);
+
+    displaySubjects();
+}
 // Calculate CGPA
 function calculateCGPA() {
 
