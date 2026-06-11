@@ -1,4 +1,5 @@
 let currentSGPA = 0;
+let cgpaChart;
 // Store all subjects
 let subjects = [];
 let semesters = [];
@@ -228,6 +229,7 @@ function saveSemester() {
 
     updateDashboard();
     updatePercentage();
+    drawChart();
     saveSemesterData();
 
     document.getElementById(
@@ -282,6 +284,7 @@ function deleteSemester(index) {
 
     updateDashboard();
     updatePercentage();
+    drawChart();
     saveSemesterData();
 }
     
@@ -317,6 +320,7 @@ function loadSemesterData() {
 
         updateDashboard();
         updatePercentage();
+        drawChart();
     }
 }
 function calculateOverallCGPA() {
@@ -513,4 +517,61 @@ function updateAcademicStanding(cgpa) {
         "academicStanding"
     ).innerHTML =
         "Academic Standing: " + standing;
+}
+function drawChart() {
+
+    let labels =
+        semesters.map(
+            item => item.semester
+        );
+
+    let values =
+        semesters.map(
+            item => parseFloat(item.sgpa)
+        );
+
+    let ctx =
+        document.getElementById(
+            "cgpaChart"
+        );
+
+    if (cgpaChart) {
+        cgpaChart.destroy();
+    }
+
+    cgpaChart =
+        new Chart(ctx, {
+
+        type: "bar",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                label: "SGPA",
+
+                data: values,
+
+                borderWidth: 1
+
+            }]
+        },
+
+        options: {
+
+            responsive: true,
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    max: 10
+                }
+            }
+        }
+    });
 }
