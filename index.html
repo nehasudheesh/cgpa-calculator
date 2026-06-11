@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>CGPA Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,6 +10,12 @@
 <body>
     <div class="container">
         <h1>CGPA Calculator</h1>
+         <button
+                type="button"
+                id="themeBtn"
+                onclick="toggleTheme()">
+                🌙 Dark Mode
+        </button>
 
         <form>
             <label>Subject Name</label>
@@ -98,41 +104,41 @@
 
             <div class="dashboard">
 
-                 <div class="dashboard-card">
+                <div class="dashboard-card">
                     <h3>Overall CGPA</h3>
                     <p id="dashboardCGPA">0.00</p>
-                 </div>
+                </div>
 
-                 <div class="dashboard-card">
+                <div class="dashboard-card">
                     <h3>Highest SGPA</h3>
                     <p id="highestSGPA">0.00</p>
-                 </div>
+                </div>
 
-                 <div class="dashboard-card">
+                <div class="dashboard-card">
                     <h3>Lowest SGPA</h3>
                     <p id="lowestSGPA">0.00</p>
-                 </div>
+                </div>
 
-                 <div class="dashboard-card">
-                   <h3>Total Semesters</h3>
-                   <p id="totalSemesters">0</p>
-                 </div>
-                
-                 <div class="dashboard-card">
+                <div class="dashboard-card">
+                    <h3>Total Semesters</h3>
+                    <p id="totalSemesters">0</p>
+                </div>
+
+                <div class="dashboard-card">
                     <h3>Percentage</h3>
                     <p id="dashboardPercentage">0%</p>
-                 </div>
-                <h2>Performance Chart</h2>
+                </div>
 
-                <canvas id="cgpaChart"></canvas>
+                </div>
 
-            </div>
+            <h2>Performance Chart</h2>
+
+            <canvas id="cgpaChart"></canvas>
         </form>
     </div>
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-</body>
 </body>
 </html>

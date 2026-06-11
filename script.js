@@ -188,6 +188,8 @@ function loadSubjects() {
 loadSubjects();
 
 loadSemesterData();
+
+loadTheme();
 function saveSemester() {
 
     let semesterName =
@@ -574,4 +576,40 @@ function drawChart() {
             }
         }
     });
+}
+function toggleTheme() {
+
+    document.body.classList.toggle("dark-mode");
+
+    let button =
+        document.getElementById("themeBtn");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        button.innerHTML = "☀️ Light Mode";
+
+        localStorage.setItem("theme", "dark");
+
+    } else {
+
+        button.innerHTML = "🌙 Dark Mode";
+
+        localStorage.setItem("theme", "light");
+    }
+}
+
+function loadTheme() {
+
+    let savedTheme =
+        localStorage.getItem("theme");
+
+    let button =
+        document.getElementById("themeBtn");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark-mode");
+
+        button.innerHTML = "☀️ Light Mode";
+    }
 }
