@@ -227,7 +227,7 @@ function saveSemester() {
     calculateOverallCGPA();
 
     updateDashboard();
-
+    updatePercentage();
     saveSemesterData();
 
     document.getElementById(
@@ -281,7 +281,7 @@ function deleteSemester(index) {
     calculateOverallCGPA();
 
     updateDashboard();
-
+    updatePercentage();
     saveSemesterData();
 }
     
@@ -316,6 +316,7 @@ function loadSemesterData() {
         calculateOverallCGPA();
 
         updateDashboard();
+        updatePercentage();
     }
 }
 function calculateOverallCGPA() {
@@ -411,4 +412,105 @@ function updateDashboard() {
         "totalSemesters"
     ).innerHTML =
         semesters.length;
+}
+function calculatePercentage() {
+
+    if (semesters.length === 0) {
+
+        document.getElementById(
+            "percentageResult"
+        ).innerHTML =
+        "No semester data available";
+
+        return;
+    }
+
+    let totalSGPA = 0;
+
+    semesters.forEach((item) => {
+
+        totalSGPA +=
+            parseFloat(item.sgpa);
+
+    });
+
+    let cgpa =
+        totalSGPA /
+        semesters.length;
+
+    let percentage =
+        (cgpa - 0.75) * 10;
+    updateAcademicStanding(cgpa);
+
+    document.getElementById(
+        "percentageResult"
+    ).innerHTML =
+
+        "Percentage = "
+        + percentage.toFixed(2)
+        + "%";
+}
+function updatePercentage() {
+
+    if (semesters.length === 0) {
+
+       document.getElementById(
+            "dashboardPercentage"
+       ).innerHTML =
+            percentage.toFixed(2) + "%";
+
+        return;
+    }
+
+    let totalSGPA = 0;
+
+    semesters.forEach((item) => {
+
+        totalSGPA +=
+            parseFloat(item.sgpa);
+
+    });
+
+    let cgpa =
+        totalSGPA /
+        semesters.length;
+
+    let percentage =
+        (cgpa - 0.75) * 10;
+
+    document.getElementById(
+        "percentageResult"
+    ).innerHTML =
+
+        "Percentage = "
+        + percentage.toFixed(2)
+        + "%";
+}
+function updateAcademicStanding(cgpa) {
+
+    let standing = "";
+
+    if (cgpa >= 9) {
+        standing = "Outstanding";
+    }
+    else if (cgpa >= 8) {
+        standing = "Excellent";
+    }
+    else if (cgpa >= 7) {
+        standing = "Very Good";
+    }
+    else if (cgpa >= 6) {
+        standing = "Good";
+    }
+    else if (cgpa >= 5) {
+        standing = "Average";
+    }
+    else {
+        standing = "Needs Improvement";
+    }
+
+    document.getElementById(
+        "academicStanding"
+    ).innerHTML =
+        "Academic Standing: " + standing;
 }

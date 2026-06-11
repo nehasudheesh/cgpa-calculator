@@ -176,3 +176,27 @@ hr{
 
     color: darkblue;
 }
+#percentageResult {
+
+    text-align: center;
+
+    color: green;
+
+    margin-top: 20px;
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+#academicStanding {
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: purple;
+}
