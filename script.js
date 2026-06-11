@@ -35,7 +35,7 @@ function addSubject() {
 
     // Refresh list
     displaySubjects();
-
+    saveSubjects();
     // Clear inputs
     document.getElementById("subject").value = "";
     document.getElementById("credit").value = "";
@@ -101,6 +101,8 @@ function deleteSubject(index) {
     subjects.splice(index, 1);
 
     displaySubjects();
+
+    saveSubjects();
 }
 // Calculate CGPA
 function calculateCGPA() {
@@ -158,3 +160,26 @@ function calculateCGPA() {
     document.getElementById("result").innerHTML =
         "CGPA = " + cgpa.toFixed(2);
 }
+function saveSubjects() {
+
+    localStorage.setItem(
+        "subjects",
+        JSON.stringify(subjects)
+    );
+}
+
+function loadSubjects() {
+
+    let storedSubjects =
+        localStorage.getItem("subjects");
+
+    if (storedSubjects) {
+
+        subjects =
+            JSON.parse(storedSubjects);
+
+        displaySubjects();
+    }
+}
+
+loadSubjects();
