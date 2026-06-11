@@ -124,3 +124,13 @@ hr{
 #semesterList{
     margin-top:20px;
 }
+#overallCGPA {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: darkblue;
+
+    font-size: 28px;
+}

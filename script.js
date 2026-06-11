@@ -268,11 +268,17 @@ function displaySemesters() {
 }
 function deleteSemester(index) {
 
+    function deleteSemester(index) {
+
     semesters.splice(index,1);
 
     displaySemesters();
 
+    calculateOverallCGPA();
+
     saveSemesterData();
+}
+    
 }
 function saveSemesterData() {
 
@@ -301,4 +307,35 @@ function loadSemesterData() {
 
         displaySemesters();
     }
+}
+function calculateOverallCGPA() {
+
+    if (semesters.length === 0) {
+
+        document.getElementById(
+            "overallCGPA"
+        ).innerHTML =
+        "No semesters available";
+
+        return;
+    }
+
+    let totalSGPA = 0;
+
+    semesters.forEach((item) => {
+
+        totalSGPA +=
+            parseFloat(item.sgpa);
+
+    });
+
+    let overallCGPA =
+        totalSGPA /
+        semesters.length;
+
+    document.getElementById(
+        "overallCGPA"
+    ).innerHTML =
+        "Overall CGPA = "
+        + overallCGPA.toFixed(2);
 }
