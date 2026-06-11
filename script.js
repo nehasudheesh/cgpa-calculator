@@ -1,6 +1,7 @@
+let currentSGPA = 0;
 // Store all subjects
 let subjects = [];
-
+let semesters = [];
 // Add Subject
 function addSubject() {
 
@@ -154,11 +155,11 @@ function calculateCGPA() {
             item.credit;
     });
 
-    let cgpa =
-        totalPoints / totalCredits;
+    let cgpa = totalPoints / totalCredits;
 
-    document.getElementById("result").innerHTML =
-        "CGPA = " + cgpa.toFixed(2);
+    currentSGPA = cgpa;
+
+    document.getElementById("result").innerHTML = "CGPA = " + cgpa.toFixed(2);
 }
 function saveSubjects() {
 
@@ -182,4 +183,122 @@ function loadSubjects() {
     }
 }
 
+
 loadSubjects();
+
+loadSemesterData();
+function saveSemester() {
+
+    let semesterName =
+        document.getElementById(
+            "semesterName"
+        ).value;
+
+    if (semesterName === "") {
+
+        alert(
+            "Enter semester name"
+        );
+
+        return;
+    }
+
+    if (currentSGPA === 0) {
+
+        alert(
+            "Calculate SGPA first"
+        );
+
+        return;
+    }
+
+    semesters.push({
+
+        semester:
+            semesterName,
+
+        sgpa:
+            currentSGPA.toFixed(2)
+
+    });
+
+    displaySemesters();
+
+    saveSemesterData();
+
+    document.getElementById(
+        "semesterName"
+    ).value = "";
+}
+function displaySemesters() {
+
+    let list =
+        document.getElementById(
+            "semesterList"
+        );
+
+    list.innerHTML = "";
+
+    semesters.forEach(
+
+        (item, index) => {
+
+        list.innerHTML += `
+        <div class="subject-card">
+
+            <span>
+
+                ${item.semester}
+                :
+                ${item.sgpa}
+
+            </span>
+
+            <button
+            class="delete-btn"
+            onclick="deleteSemester(${index})">
+
+            Delete
+
+            </button>
+
+        </div>
+        `;
+    });
+}
+function deleteSemester(index) {
+
+    semesters.splice(index,1);
+
+    displaySemesters();
+
+    saveSemesterData();
+}
+function saveSemesterData() {
+
+    localStorage.setItem(
+
+        "semesters",
+
+        JSON.stringify(
+            semesters
+        )
+    );
+}
+function loadSemesterData() {
+
+    let data =
+
+    localStorage.getItem(
+        "semesters"
+    );
+
+    if(data){
+
+        semesters =
+
+        JSON.parse(data);
+
+        displaySemesters();
+    }
+}

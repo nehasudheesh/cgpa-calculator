@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>CGPA Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div class="container">
-
         <h1>CGPA Calculator</h1>
 
         <form>
-
             <label>Subject Name</label>
-            <input type="text" id="subject" placeholder="Enter subject">
+            <input
+                type="text"
+                id="subject"
+                placeholder="Enter subject"
+            >
 
             <label>Grade</label>
             <select id="grade">
@@ -30,20 +30,51 @@
             </select>
 
             <label>Credits</label>
-            <input type="number" id="credit" placeholder="Enter credits">
-            <button type="button" onclick="addSubject()">
+            <input
+                type="number"
+                id="credit"
+                placeholder="Enter credits"
+            >
+
+            <button
+                type="button"
+                onclick="addSubject()"
+            >
                 Add Subject
             </button>
-            <button type="button" onclick="calculateCGPA()">
+
+            <button
+                type="button"
+                onclick="calculateCGPA()"
+            >
                 Calculate CGPA
             </button>
 
             <div id="subjectList"></div>
+
             <h3 id="result"></h3>
+
+            <hr>
+
+            <h2>Semester Records</h2>
+
+            <input
+                type="text"
+                id="semesterName"
+                placeholder="Semester 1"
+            >
+
+            <button
+                type="button"
+                onclick="saveSemester()"
+            >
+                Save Semester
+            </button>
+
+            <div id="semesterList"></div>
         </form>
-
     </div>
- <script src="script.js"></script>
-</body>
 
+    <script src="script.js"></script>
+</body>
 </html>
