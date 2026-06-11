@@ -224,6 +224,10 @@ function saveSemester() {
 
     displaySemesters();
 
+    calculateOverallCGPA();
+
+    updateDashboard();
+
     saveSemesterData();
 
     document.getElementById(
@@ -276,6 +280,8 @@ function deleteSemester(index) {
 
     calculateOverallCGPA();
 
+    updateDashboard();
+
     saveSemesterData();
 }
     
@@ -306,6 +312,10 @@ function loadSemesterData() {
         JSON.parse(data);
 
         displaySemesters();
+
+        calculateOverallCGPA();
+
+        updateDashboard();
     }
 }
 function calculateOverallCGPA() {
@@ -338,4 +348,67 @@ function calculateOverallCGPA() {
     ).innerHTML =
         "Overall CGPA = "
         + overallCGPA.toFixed(2);
+}
+function updateDashboard() {
+
+    if (semesters.length === 0) {
+
+        document.getElementById(
+            "dashboardCGPA"
+        ).innerHTML = "0.00";
+
+        document.getElementById(
+            "highestSGPA"
+        ).innerHTML = "0.00";
+
+        document.getElementById(
+            "lowestSGPA"
+        ).innerHTML = "0.00";
+
+        document.getElementById(
+            "totalSemesters"
+        ).innerHTML = "0";
+
+        return;
+    }
+
+    let sgpaValues =
+        semesters.map(
+            item => parseFloat(item.sgpa)
+        );
+
+    let highest =
+        Math.max(...sgpaValues);
+
+    let lowest =
+        Math.min(...sgpaValues);
+
+    let total = 0;
+
+    sgpaValues.forEach(
+        value => total += value
+    );
+
+    let overall =
+        total / sgpaValues.length;
+
+    document.getElementById(
+        "dashboardCGPA"
+    ).innerHTML =
+        overall.toFixed(2);
+
+    document.getElementById(
+        "highestSGPA"
+    ).innerHTML =
+        highest.toFixed(2);
+
+    document.getElementById(
+        "lowestSGPA"
+    ).innerHTML =
+        lowest.toFixed(2);
+
+    document.getElementById(
+        "totalSemesters"
+    ).innerHTML =
+        semesters.length;
 }
