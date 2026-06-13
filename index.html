@@ -134,10 +134,16 @@
             <h2>Performance Chart</h2>
 
             <canvas id="cgpaChart"></canvas>
+            <button
+                type="button"
+                onclick="downloadPDF()">
+                📄 Download PDF Report
+            </button>
         </form>
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>

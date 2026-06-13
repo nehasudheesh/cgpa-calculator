@@ -613,3 +613,75 @@ function loadTheme() {
         button.innerHTML = "☀️ Light Mode";
     }
 }
+async function downloadPDF() {
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+
+    doc.text(
+        "CGPA Academic Report",
+        20,
+        20
+    );
+
+    doc.setFontSize(12);
+
+    let cgpa =
+        document
+        .getElementById(
+            "dashboardCGPA"
+        )
+        .innerHTML;
+
+    let percentage =
+        document
+        .getElementById(
+            "dashboardPercentage"
+        )
+        .innerHTML;
+
+    doc.text(
+        "Overall CGPA: " + cgpa,
+        20,
+        40
+    );
+
+    doc.text(
+        "Percentage: " + percentage,
+        20,
+        50
+    );
+
+    let y = 70;
+
+    doc.text(
+        "Semester Records:",
+        20,
+        y
+    );
+
+    y += 10;
+
+    semesters.forEach(
+        (semester) => {
+
+            doc.text(
+                semester.semester +
+                " : " +
+                semester.sgpa,
+
+                20,
+                y
+            );
+
+            y += 10;
+        }
+    );
+
+    doc.save(
+        "CGPA_Report.pdf"
+    );
+}
